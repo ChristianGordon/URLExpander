@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL Expander</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.ajax(
+      {
+        url: "/expand_url", 
+        success: function(result) {
+          $("#originalUrl").html(result.original_url);
+          $("#finalUrl").html(result.final_url);
+          $("#numRedirects").html(result.num_redirects);
+        },
+        error: function(xhr, status, error) {
+          alert(xhr.responseText);
+        },
+        data: {
+          url: $("#txt1").val()
+        },
+      }
+    );
+  });
+});
+
+</script>
+
+<body>
+
+<h1>URL Expander</h1>
+
+  <label>Enter URL</label>
+  <input type="text" id="txt1" name="txt1"><br><br>
+
+<button>Check URL</button>
+<br></br>
+
+<label>Number of Redirects: </label>
+<div id="numRedirects"></div>
+
+<label>Original URL: </label> 
+<div id="originalUrl"></div>
+
+<label>Final URL: </label> 
+<div id="finalUrl"></div>
+
+
+
+</body>
+</html>
