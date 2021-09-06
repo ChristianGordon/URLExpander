@@ -15,6 +15,7 @@ $(document).ready(function(){
           $("#originalUrl").html(result.original_url);
           $("#finalUrl").html(result.final_url);
           $("#numRedirects").html(result.num_redirects);
+          $("#responseType").html(result.response_format);
         },
         error: function(xhr, status, error) {
           alert(xhr.responseText);
@@ -37,16 +38,23 @@ $(document).ready(function(){
   <input type="text" id="txt1" name="txt1"><br><br>
 
 <button>Check URL</button>
-<br></br>
+<br></br> 
+
 
 <label>Number of Redirects: </label>
-<div id="numRedirects"></div>
+<div id="numRedirects"></div> 
+<br></br>
 
 <label>Original URL: </label> 
 <div id="originalUrl"></div>
+<br></br>
 
 <label>Final URL: </label> 
 <div id="finalUrl"></div>
+<br></br>
+
+<label>Redirect Page Type: </label> 
+<div id="responseType"></div>
 
 
 

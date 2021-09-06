@@ -7,6 +7,7 @@ class UrlController < ApplicationController
     response = Net::HTTP.get_response(uri)
     #checks if a location exists (a redirect)
     redirect_location = response.header["location"] 
+    content_type = response.header["content-type"] 
 
     count = 0
 
@@ -19,13 +20,15 @@ class UrlController < ApplicationController
       response = Net::HTTP.get_response(uri)
       #checks if a location exists (a redirect)
       redirect_location = response.header["location"]
+      content_type = response.header["content-type"] 
+
     end
     #returns original url(user inputted), number of redirects, and final url destination
-    response = {original_url: params[:url], num_redirects: count, final_url: url} 
-    render json: response.to_json
+    display_response = {original_url: params[:url], num_redirects: count, final_url: url, response_format: content_type} 
+    render json: display_response.to_json
   end
 
   def url_expander
-    
+    render "url_expander"
   end
 end
